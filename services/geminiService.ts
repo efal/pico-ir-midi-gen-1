@@ -1,9 +1,18 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+let aiInstance: GoogleGenAI | null = null;
+
+const getAi = () => {
+  if (!aiInstance) {
+    const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY || "";
+    aiInstance = new GoogleGenAI({ apiKey });
+  }
+  return aiInstance;
+};
 
 export const askGemini = async (prompt: string, contextCode: string): Promise<string> => {
   try {
+    const ai = getAi();
     const fullPrompt = `
       Du bist ein Experte für Arduino, C++ und MIDI.
       
