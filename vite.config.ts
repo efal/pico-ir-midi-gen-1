@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
   return {
     server: {
-      port: 3007,
+      port: 3000,
       host: '0.0.0.0',
     },
     plugins: [
@@ -17,24 +17,22 @@ export default defineConfig(({ mode }) => {
         includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
         manifest: {
           name: 'RP2040 IR MIDI Generator',
-          short_name: 'MIDI Gen',
-          description: 'Tool zur Erstellung von Arduino-Code für RP2040-basierte MIDI-Controller',
+          short_name: 'IR MIDI Gen',
+          description: 'Generate IR MIDI code for RP2040 and Arduino',
           theme_color: '#111827',
-          background_color: '#111827',
-          display: 'standalone',
           icons: [
             {
-              src: '/icons/icon-192x192.png',
+              src: 'icons/icon-192x192.png',
               sizes: '192x192',
               type: 'image/png'
             },
             {
-              src: '/icons/icon-512x512.png',
+              src: 'icons/icon-512x512.png',
               sizes: '512x512',
               type: 'image/png'
             },
             {
-              src: '/icons/icon-512x512.png',
+              src: 'icons/icon-512x512.png',
               sizes: '512x512',
               type: 'image/png',
               purpose: 'any maskable'

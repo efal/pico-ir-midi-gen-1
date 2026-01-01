@@ -1,14 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-let ai: any = null;
-try {
-  const apiKey = process.env.API_KEY || '';
-  if (apiKey) {
-    ai = new GoogleGenAI({ apiKey });
-  }
-} catch (e) {
-  console.error("Failed to initialize GoogleGenAI", e);
-}
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const askGemini = async (prompt: string, contextCode: string): Promise<string> => {
   try {
@@ -28,10 +20,6 @@ export const askGemini = async (prompt: string, contextCode: string): Promise<st
 
       Bitte antworte kurz, präzise und hilfreich auf Deutsch. Wenn Code-Änderungen nötig sind, erkläre sie.
     `;
-
-    if (!ai) {
-      return "AI ist nicht konfiguriert. Bitte setzen Sie den GEMINI_API_KEY.";
-    }
 
     const response = await ai.models.generateContent({
       model: 'gemini-3-flash-preview',
