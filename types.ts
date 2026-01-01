@@ -44,36 +44,16 @@ export interface FaderMapping {
   vdjAction?: string;
 }
 
-export interface MuxFaderMapping {
-  id: string;
-  muxId: string;
-  channelIndex: number; // 0-15
-  mode: 'analog' | 'digital';
-  midiType: MidiType.NOTE_ON | MidiType.CC;
-  midiChannel: number;
-  ccNumber: number; // Also used for Note number
-  vdjAction?: string;
-}
-
-export interface MultiplexerConfig {
-  id: string;
-  name: string;
-  type: '8' | '16';
-  addressPins: number[]; // [S0, S1, S2, S3]
-  signalPin: number; // Analog/Digital Input Pin (Z)
-}
-
 export interface EncoderMapping {
   id: string;
   name: string;
   pinA: number;
   pinB: number;
   pinButton?: number;
-  midiType: MidiType.NOTE_ON | MidiType.CC;
   buttonMidiType?: MidiType.NOTE_ON | MidiType.CC;
   buttonData1?: number;
   channel: number;
-  ccNumber: number; // Represents Note number if midiType is Note
+  ccNumber: number;
   multiplier: number;
   vdjActionRotate?: string;
   vdjActionClick?: string;
@@ -90,18 +70,14 @@ export interface KeypadMapping {
   vdjActions?: string[][];
 }
 
-export type DisplayType = 'SH1106' | 'SSD1306' | 'LCD1602';
+export type DisplayType = 'SH1106' | 'LCD1602';
 
 export interface DisplaySettings {
   enabled: boolean;
   type: DisplayType;
-  isDual: boolean;
   sdaPin: number;
   sclPin: number;
   i2cAddress: string;
-  sda2Pin: number;
-  scl2Pin: number;
-  i2cAddress2: string;
   showIrLog: boolean;
   showMidiLog: boolean;
   inverted: boolean;

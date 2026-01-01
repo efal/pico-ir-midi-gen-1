@@ -23,7 +23,7 @@ const EncoderRow: React.FC<Props> = ({ mapping, onChange, onDelete }) => {
         <button onClick={() => onDelete(mapping.id)} className="text-gray-500 hover:text-red-500"><Trash2 size={16}/></button>
       </div>
 
-      <div className="grid grid-cols-5 gap-4 mb-6">
+      <div className="grid grid-cols-4 gap-4 mb-6">
         <div>
           <label className="text-[10px] text-gray-500 uppercase font-bold">Pin A (Rotate)</label>
           <input type="number" value={mapping.pinA} onChange={e => onChange(mapping.id, 'pinA', parseInt(e.target.value))} className="w-full bg-gray-900 border border-gray-700 p-1.5 rounded text-sm focus:border-blue-500 outline-none"/>
@@ -33,20 +33,7 @@ const EncoderRow: React.FC<Props> = ({ mapping, onChange, onDelete }) => {
           <input type="number" value={mapping.pinB} onChange={e => onChange(mapping.id, 'pinB', parseInt(e.target.value))} className="w-full bg-gray-900 border border-gray-700 p-1.5 rounded text-sm focus:border-blue-500 outline-none"/>
         </div>
         <div>
-          <label className="text-[10px] text-gray-500 uppercase font-bold">Rot. MIDI Typ</label>
-          <select 
-            value={mapping.midiType || MidiType.CC} 
-            onChange={e => onChange(mapping.id, 'midiType', e.target.value)}
-            className="w-full bg-gray-900 border border-gray-700 p-1.5 rounded text-sm focus:border-blue-500 outline-none text-white"
-          >
-            <option value={MidiType.CC}>CC</option>
-            <option value={MidiType.NOTE_ON}>Note</option>
-          </select>
-        </div>
-        <div>
-          <label className="text-[10px] text-gray-500 uppercase font-bold">
-            {mapping.midiType === MidiType.NOTE_ON ? 'Note #' : 'CC #'} (Rot)
-          </label>
+          <label className="text-[10px] text-gray-500 uppercase font-bold">CC # (Rotate)</label>
           <input type="number" value={mapping.ccNumber} onChange={e => onChange(mapping.id, 'ccNumber', parseInt(e.target.value))} className="w-full bg-gray-900 border border-gray-700 p-1.5 rounded text-sm focus:border-blue-500 outline-none"/>
         </div>
         <div>
